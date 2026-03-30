@@ -4,9 +4,6 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-from apt_media import extract_row_images
-from apt_parse import enrich_dataframe
-
 EXCEL = Path(__file__).resolve().parent / "APT리스트.xlsx"
 
 
