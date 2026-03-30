@@ -76,7 +76,6 @@ def load(cache_key: tuple, data_bytes: bytes, sheet_name: str, hdr: int) -> pd.D
 
 
 df = load(cache_key, data_bytes, sheet, header)
-df = enrich_dataframe(df)
 
 query = st.sidebar.text_input("검색 (입력한 글자가 들어간 셀만)", "")
 if query.strip():
@@ -87,22 +86,7 @@ if query.strip():
 
 st.dataframe(df, use_container_width=True, height=min(720, 42 + 35 * (len(df) + 1)))
 
-row_imgs = cached_row_images(cache_key, data_bytes, sheet, header)
-if row_imgs and any(row_imgs.values()):
-    st.subheader("사진 (엑셀에 삽입한 그림)")
-    st.caption("표와 **같은 데이터 행 번호(index)**에 맞춥니다. 안 보이면 그림이 ‘셀에 넣기’가 아니거나 행이 어긋난 경우일 수 있습니다.")
-    for idx in df.index:
-        key = int(idx)
-        imgs = row_imgs.get(key, [])
-        if not imgs:
-            continue
-        st.markdown(f"**데이터 행 index {key}**")
-        n = min(len(imgs), 6)
-        cols = st.columns(max(1, n))
-        for j in range(n):
-            cols[j].image(imgs[j], use_container_width=True)
-        if len(imgs) > n:
-            st.caption(f"+{len(imgs) - n}장 더 있음")
+
 
 buf = BytesIO()
 out_name = sanitize_sheet_name(sheet)
