@@ -6,7 +6,7 @@ st.title("🏠 APT 리스트 조회")
 # 👉 여기에 네 시트 ID 넣기
 SHEET_ID = "여기에_ID붙여넣기"
 
-url = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv"
+url = f"https://docs.google.com/spreadsheets/d/15XH4DNItLzCFLQgqvY7gr8cD1N1HPAoQlGlSN-05jxw/export?format=csv"
 
 df = pd.read_csv(url)
 
