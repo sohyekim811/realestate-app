@@ -35,3 +35,12 @@ st.download_button(
     "apt.csv",
     "text/csv"
 )
+# 🖼️ 이미지
+if "이미지URL" in df.columns:
+    st.subheader("🖼️ 이미지")
+
+    for _, row in df.iterrows():
+        if pd.notna(row["이미지URL"]):
+            st.markdown(f"### {row.get('아파트명','')}")
+            st.image(row["이미지URL"], use_container_width=True)
+            st.divider()
